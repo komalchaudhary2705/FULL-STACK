@@ -8,7 +8,7 @@ by tag name
 
 ## in logo
 we set width accoring our requirement
-and set margin auto
+and set height auto
 
 .logo img{
     width : "100px";
