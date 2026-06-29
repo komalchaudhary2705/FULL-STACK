@@ -7,7 +7,7 @@ by tag name
 
 
 ## in logo
-we set width accoring our requirement
+we set width according our requirement
 and set height auto
 
 .logo img{
