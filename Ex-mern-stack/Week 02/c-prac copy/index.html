@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <script>
+     
+      var playerOneMove = "X";
+      var playerTwoMove = "O";
+     
+      var clickCount = 1;
+
+     
+      function onBtnClick(btnNo, btnElm) {
+        var move = checkPlayerMove();
+        if (move === 2) {
+          btnElm.innerText = playerTwoMove;
+        } else {
+          btnElm.innerText = playerOneMove;
+
+        }
+        // clickCount ++;
+        clickCount = clickCount + 1;
+        
+        alert("Btn Clicked " + btnNo + " move is " + move);
+      }
+
+     
+      function checkPlayerMove() {
+        if (clickCount % 2 == 0) {
+          return 2;
+        } else {
+          return 1;
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <section class="container">
+      <!-- row 1 -->
+      <div class="row">
+        <div class="col"><button onclick="onBtnClick(1, this)"></button></div>
+        <div class="col"><button onclick="onBtnClick(2, this)"></button></div>
+        <div class="col"><button onclick="onBtnClick(3, this)"></button></div>
+      </div>
+
+      <!-- row 2 -->
+
+      <div class="row">
+        <div class="col"><button onclick="onBtnClick(4, this)"></button></div>
+        <div class="col"><button onclick="onBtnClick(5, this)"></button></div>
+        <div class="col"><button onclick="onBtnClick(6, this)"></button></div>
+      </div>
+
+      <!-- row 3 -->
+
+      <div class="row">
+        <div class="col"><button onclick="onBtnClick(7, this)"></button></div>
+        <div class="col"><button onclick="onBtnClick(8, this)"></button></div>
+        <div class="col"><button onclick="onBtnClick(9, this)"></button></div>
+      </div>
+    </section>
+  </body>
+</html>
