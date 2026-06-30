@@ -6,34 +6,30 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css" />
     <script>
-     
       var playerOneMove = "X";
       var playerTwoMove = "O";
-     
+
       var clickCount = 1;
 
-     
-      function onBtnClick(btnNo, btnElm) {
-        var move = checkPlayerMove();
-        if (move === 2) {
+      function onBtnClick(btnElm) {
+        
+        // stop clicking again
+        if (btnElm.disabled) {
+          return;
+        }
+
+        if (clickCount % 2 == 0) {
           btnElm.innerText = playerTwoMove;
         } else {
           btnElm.innerText = playerOneMove;
-
         }
+        // disable button after click
+        btnElm.disabled = true;
+
         // clickCount ++;
         clickCount = clickCount + 1;
-        
-        alert("Btn Clicked " + btnNo + " move is " + move);
-      }
 
-     
-      function checkPlayerMove() {
-        if (clickCount % 2 == 0) {
-          return 2;
-        } else {
-          return 1;
-        }
+        // alert("Btn Clicked " + btnNo + " move is " + move);
       }
     </script>
   </head>

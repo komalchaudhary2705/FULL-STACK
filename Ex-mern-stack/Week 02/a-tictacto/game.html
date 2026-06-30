@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <section class="container">
+      <div class="row">
+        <div class="col"><button class="btn"></button></div>
+        <div class="col"><button class="btn"></button></div>
+        <div class="col"><button class="btn"></button></div>
+      </div>
+
+      <div class="row">
+        <div class="col"><button class="btn"></button></div>
+        <div class="col"><button class="btn"></button></div>
+        <div class="col"><button class="btn"></button></div>
+      </div>
+
+      <div class="row">
+        <div class="col"><button class="btn"></button></div>
+        <div class="col"><button class="btn"></button></div>
+        <div class="col"><button class="btn"></button></div>
+      </div>
+    </section>
+
+    <!-- <script>
+        [1,2,3] // 0,1,2
+        [4,5,6] // 3,4,5
+        [7,8,9] // 6,7,8
+
+        [1,4,7] 
+        [2,5,8]
+        [3,6,9]
+
+        [1,5,9]
+        [3,5,7]
+    </script> -->
+
+    <script>
+      var playerOneMove = "X";
+      var playerTwoMove = "O";
+
+      var clickCount = 1;
+
+      const buttons = document.querySelectorAll(".btn");
+
+      console.log(buttons);
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", function (btnElm) {
+          const btnVal = btnElm.target.innerText;
+          console.log(btnVal);
+          //   console.log(btnElm.target.dataset.btno);
+          console.log(btnElm.target.value);
+          // prevent double click
+          if (btnElm.target.disabled) {
+            return;
+          }
+
+          //   var move = checkPlayerMove();
+
+          if (clickCount % 2 === 0) {
+            btnElm.target.innerText = playerTwoMove;
+          } else {
+            btnElm.target.innerText = playerOneMove;
+          }
+
+          // disable clicked button
+          btnElm.target.disabled = true;
+
+          clickCount++;
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Tic Tac Toe</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <section class="container">
+      <div class="row">
+        <div class="col"><button class="btn"></button></div>
+        <div class="col"><button class="btn"></button></div>
+        <div class="col"><button class="btn"></button></div>
+      </div>
+
+      <div class="row">
+        <div class="col"><button class="btn"></button></div>
+        <div class="col"><button class="btn"></button></div>
+        <div class="col"><button class="btn"></button></div>
+      </div>
+
+      <div class="row">
+        <div class="col"><button class="btn"></button></div>
+        <div class="col"><button class="btn"></button></div>
+        <div class="col"><button class="btn"></button></div>
+      </div>
+      <div class="row"> <button id="restartBtn">Restart Game</button></div>
+    </section>
+
+    <!-- Restart Button -->
+   
+
+    <script>
+      const player = {
+        one: "X",
+
+        two: "O",
+      };
+
+      let currentPlayer = player.one;
+
+      let gameBoard = ["", "", "", "", "", "", "", "", ""];
+
+      let gameOver = false;
+
+      const buttons = document.querySelectorAll(".btn");
+
+      const restartBtn = document.querySelector("#restartBtn");
+
+      const winningPatterns = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+
+        [0, 4, 8],
+        [2, 4, 6],
+      ];
+
+      buttons.forEach((button, index) => {
+        button.addEventListener("click", () => {
+          // stop after win/draw
+          if (gameOver) {
+            return;
+          }
+
+          // prevent double click
+          if (button.innerText !== "") {
+            return;
+          }
+
+          // display current player
+          button.innerText = currentPlayer;
+
+          // save move
+          gameBoard[index] = currentPlayer;
+
+          // check winner
+          if (checkWinner()) {
+            return;
+          }
+
+          // check draw
+          if (checkDraw()) {
+            return;
+          }
+
+          // change player
+
+          currentPlayer =
+            currentPlayer === player.one ? player.two : player.one;
+        });
+      });
+
+      function checkWinner() {
+        for (let pattern of winningPatterns) {
+          let [a, b, c] = pattern;
+
+          if (
+            gameBoard[a] !== "" &&
+            gameBoard[a] === gameBoard[b] &&
+            gameBoard[a] === gameBoard[c]
+          ) {
+            alert(`${gameBoard[a]} Wins 🎉`);
+
+            gameOver = true;
+
+            disableButtons();
+
+            return true;
+          }
+        }
+
+        return false;
+      }
+
+      function checkDraw() {
+        if (!gameBoard.includes("")) {
+          alert("Game Draw 🤝");
+
+          gameOver = true;
+
+          disableButtons();
+
+          return true;
+        }
+
+        return false;
+      }
+
+      function disableButtons() {
+        buttons.forEach((button) => {
+          button.disabled = true;
+        });
+      }
+
+      // Restart Game
+
+      restartBtn.addEventListener("click", restartGame);
+
+      function restartGame() {
+        // empty board
+
+        gameBoard = ["", "", "", "", "", "", "", "", ""];
+
+        // start from X
+
+        currentPlayer = player.one;
+
+        // allow playing
+
+        gameOver = false;
+
+        buttons.forEach((button) => {
+          button.innerText = "";
+
+          button.disabled = false;
+        });
+      }
+    </script>
+  </body>
+</html>
